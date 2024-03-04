@@ -1,11 +1,10 @@
-import Acesso from "@/components/acesso";
-import Width from "@/components/width";
+import Link from "next/link";
 
 export default async function Home() {
   return (
     <div>
       <h1>Home</h1>
-      <Acesso/>
+      <Link href={`/imc`}>Calcule o IMC</Link>
     </div>
   );
 }
