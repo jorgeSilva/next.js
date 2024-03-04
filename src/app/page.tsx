@@ -1,7 +1,10 @@
-export default function Home() {
+import Acesso from "@/components/acesso";
+
+export default async function Home() {
   return (
-    <main>
+    <div>
       <h1>Home</h1>
-    </main>
+      <Acesso/>
+    </div>
   );
 }

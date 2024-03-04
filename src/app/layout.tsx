@@ -14,8 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <Menu/>
-      <body>{children}</body>
+      <body>
+        <Menu />
+        {children}
+      </body>
     </html>
   );
 }
