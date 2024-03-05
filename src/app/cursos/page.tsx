@@ -1,8 +1,9 @@
 import { GetCursos } from "@/api/api"
 import Link from "next/link"
 
-export default async function CursosPage(){
+export const dynamic = 'force-dynamic' 
 
+export default async function CursosPage(){
   const data = await GetCursos()
 
   return (
