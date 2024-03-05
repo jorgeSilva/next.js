@@ -1,10 +1,10 @@
-import Link from "next/link";
+import ServerFetch from "@/components/server-fetch";
 
 export default async function Home() {
   return (
     <div>
       <h1>Home</h1>
-      <Link href={`/imc`}>Calcule o IMC</Link>
+      <ServerFetch/>
     </div>
   );
 }
