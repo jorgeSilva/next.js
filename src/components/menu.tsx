@@ -9,6 +9,9 @@ export default function Menu(){
         <li>
           <Link href={`/sobre`}>sobre</Link>
         </li>
+        <li>
+          <Link href={`/produtos`}>Produtos</Link>
+        </li>
       </ul>
   )
 }
