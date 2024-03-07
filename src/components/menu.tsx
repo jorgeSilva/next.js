@@ -7,7 +7,10 @@ export default async function Menu(){
         <Link href={`/`}>Home</Link>
       </li>
       <li>
-        <Link href={`/acoes`}>Ações</Link>
+        <Link href={`/produto`}>Produtos</Link>
+      </li>
+      <li>
+        <Link href={`/produto/adicionar`}>Adicionar Produto</Link>
       </li>
     </ul>
   )
