@@ -1,5 +1,6 @@
 'use client'
 
+import { login } from "@/actions/login"
 import React from "react"
 
 export default function Login(){
@@ -8,19 +9,9 @@ export default function Login(){
     e.preventDefault()
     const username = e.currentTarget.username.value
     const password = e.currentTarget.password.value
-    const response = await fetch('/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        username,
-        password
-      })
-    })
-
-    if(response.ok) window.location.href = "/"
-   }
+    const response = await login(username, password)
+    console.log(response);
+  }
 
   return (
     <form onSubmit={handleSubmit}>
