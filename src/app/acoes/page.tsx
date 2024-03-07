@@ -1,3 +1,5 @@
+import Atualizar from "@/components/atualizar"
+
 type IAcao = {
   nome: string,
   preco: number,
@@ -7,7 +9,7 @@ type IAcao = {
 export default async function AcoesPage() {
   const response = await fetch('https://api.origamid.online/acoes/lua', {
     next: {
-      revalidate: 5
+      tags: ['acoes']
     }
   })
   const data = await response.json() as IAcao
@@ -15,6 +17,7 @@ export default async function AcoesPage() {
   return (
     <main>
       <h1>Acoes</h1>
+      <Atualizar/>
       <h2>{data.nome}</h2>
       <p>Preço: {data.preco}</p>
       <p>Atualizada: {data.atualizada}</p>
