@@ -1,4 +1,6 @@
-type IProduto = {
+import ProdutosLista from "@/components/produtos-lista"
+
+export type IProduto = {
   id?: string,
   nome: string, 
   preco: number, 
@@ -8,23 +10,11 @@ type IProduto = {
 }
 
 export default async function ProdutoPage() {
-  const response = await fetch('https://api.origamid.online/produtos', {
-    next: {
-      revalidate: 5
-    }
-  })
-  const produtos = await response.json() as IProduto[]
-
   return (
     <main>
       <h1>Produto</h1>
-      <ul>
-        {
-          produtos.map((produto) => (
-            <li key={produto.id}>{produto.nome}: R${produto.preco}</li>
-          ))
-        }
-      </ul>
+      <p>Essa aqui é a lista de produtos</p>
+      <ProdutosLista/>
     </main>
   )
 }

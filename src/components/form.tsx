@@ -16,9 +16,6 @@ export default function Form() {
     errors:[]
   })
 
-  console.log(state);
-  
-
   return (
     <form action={formAction}>
       <label htmlFor="nome">Nome</label>
