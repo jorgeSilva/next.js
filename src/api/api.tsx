@@ -6,7 +6,8 @@ export type ICursos = {
   nome: string,
   descricao: string,
   total_aulas: number,
-  total_horas: number
+  total_horas: number,
+  error?: string
 }
 
 export type IAulas = {

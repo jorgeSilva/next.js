@@ -1,5 +1,6 @@
 import { GetCurso, GetCursos } from "@/api/api"
 import Link from "next/link"
+import { notFound } from "next/navigation"
 
 type PageParams = {
   params: {
@@ -22,6 +23,8 @@ export async function generateStaticParams(){
 export default async function CursosPage({params}: PageParams){
 
   const data = await GetCurso(params.curso)
+
+  if(data.error) return notFound()
 
   return (
     <main>
