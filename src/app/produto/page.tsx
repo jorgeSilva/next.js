@@ -1,4 +1,6 @@
 import ProdutosLista from "@/components/produtos-lista"
+import { Suspense } from "react"
+import AdicionarPage from "./adicionar/page"
 
 export type IProduto = {
   id?: string,
@@ -14,7 +16,9 @@ export default async function ProdutoPage() {
     <main>
       <h1>Produto</h1>
       <p>Essa aqui é a lista de produtos</p>
-      <ProdutosLista/>
+      <Suspense fallback={'carregando...'}>
+        <ProdutosLista/>
+      </Suspense>
     </main>
   )
 }
