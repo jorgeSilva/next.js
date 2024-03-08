@@ -2,7 +2,7 @@
 
 import { postProdutos } from "@/actions/post-produto"
 import React from "react"
-import { useFormStatus } from "react-dom"
+import { useFormState, useFormStatus } from "react-dom"
 
 export function Button(){
   const status = useFormStatus()
@@ -12,8 +12,15 @@ export function Button(){
 }
 
 export default function Form() {
+  const [state, formAction] = useFormState(postProdutos, {
+    errors:[]
+  })
+
+  console.log(state);
+  
+
   return (
-    <form action={postProdutos}>
+    <form action={formAction}>
       <label htmlFor="nome">Nome</label>
       <input  type="text" name="nome" id="nome" />
 
@@ -32,6 +39,9 @@ export default function Form() {
       </label>
 
       <Button />
+      {
+        state.errors.map((error, i) => <p key={i} style={{color: 'red'}}>{error}</p>)
+      }
     </form>
   )
 }

@@ -12,7 +12,15 @@ type IProduto = {
   importado: 1 | 0
 }
 
-export async function postProdutos(formdata: FormData){
+function validarNome(nome: unknown){
+  return typeof nome === "string" && nome.length > 1
+}
+
+function validarPreco(preco: unknown){
+  return typeof preco === "number" && preco > 1
+}
+
+export async function postProdutos(state: {errors: string[]}, formdata: FormData){
   const produto: IProduto = {
     nome: formdata.get('nome') as string,
     descricao: formdata.get('descricao') as string,
@@ -20,17 +28,29 @@ export async function postProdutos(formdata: FormData){
     estoque: Number(formdata.get('estoque')),
     importado: formdata.get('importado') ? 1 : 0
   }
-  
-  const response = await fetch('https://api.origamid.online/produtos', {
-    method: 'POST',
-    headers: {
-      'Content-type': 'application/json'
-    },
-    body: JSON.stringify(produto)
-  })
-  
-  await response.json() as IProduto
 
+  let errors = []
+  if(!validarNome(produto.nome)) errors.push('Nome inválido')
+  if(!validarPreco(produto.preco)) errors.push('Preço inválido') 
+  if(errors.length > 0) return {errors}
+  try {
+
+    const response = await fetch('https://api.origamid.online/produtos', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(produto)
+    })
+    if(!response.ok)throw new Error('Erro ao adicinar o produto.')
+  }catch(error: unknown){
+    if(error instanceof Error){
+      return {
+        errors: [error.message]
+      }
+    } 
+  }
   revalidatePath('/produto')
   redirect('/produto')
+  // return {errors: []}
 }
